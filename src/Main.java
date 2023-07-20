@@ -1,17 +1,50 @@
+import java.util.Random;
+import java.util.Scanner;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner leitura = new Scanner(System.in);
+        System.out.println("""
+                ------------------------------------
+                Bem vindo ao jogo de adivinhação!
+                ------------------------------------
+                Você tem 5 tentativas para adivinhar o numero.
+                Boa Sorte!
+                """);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        int secreto = new Random().nextInt(100);
+        int numero = 0;
+        int inicio = 0;
+        int fim = 100;
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Digite um numero de " + inicio + " a " + fim);
+            numero = leitura.nextInt();
+            if (numero > secreto){
+                System.out.println("Numero é menor");
+                fim = numero;
+            } else if (numero < secreto) {
+                System.out.println("numero é maior");
+                inicio = numero;
+            }else {
+                System.out.println("Para bens, você acertou!");
+                break;
+            }
+
         }
+
+        if (numero!=secreto) {                      //Mensagem de derrota
+            System.out.println("""
+                    ---------------------
+                    Não foi dessa vez :(
+                    O numero era:\s""" +secreto);
+        }
+
+
+
+
+
     }
 }
